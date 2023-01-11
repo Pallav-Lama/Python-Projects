@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Delete{% endblock title %}
+
+{% block body %}
+<div class="container">
+    <form class="form my-4" method="post" action ="">
+        {% csrf_token %}
+<h1> Are you sure you want to delete this task?</h1>
+<br>
+<button class= "btn btn-dark"> Delete </button>
+</div>
+</form>
+{% endblock body %}

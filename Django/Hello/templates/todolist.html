@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}ToDoList{% endblock title %}
+{% block search %}
+<form class="form-inline my-2 my-lg-0" method="post" action="/search">
+    {% csrf_token %}
+  <input class="form-control mr-sm-2" type="search" name = "titleName" placeholder="Search" aria-label="Search">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+{% endblock search%}
+
+{% block add %}
+<div class="container">
+<form class="form-inline my-2" method="post" action="/add">
+    {% csrf_token %}
+  <input class="form-control mr-sm-2" type="title" name = "titleName" placeholder="Title" aria-label="Title">
+  <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">ADD</button>
+</form>
+</div>
+{% endblock add%}
+
+{% block body %} 
+<div class="container">
+    <table class="table">   
+        <tr>
+        <th> S.N. </th>
+        <th> Title </th>
+        <th> Action </th>
+        </tr>
+        {%for title in dataset %}
+        <tr>
+            <td> {{forloop.counter}} </td>
+            <td> {{title.titleName}} </td>  
+            <td>
+                <a href="{% url 'delete' title.titleName%}"> Delete </a>
+            </td>  
+        </tr>
+        {%endfor%}
+        
+    
+    </table>
+</div>
+    {% endblock body %}
